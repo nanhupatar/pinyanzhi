@@ -4,7 +4,7 @@
 
         <view class='measureCon'>
             <view class='imageContent'>
-                <image src='{{scoreImage}}' style='display:{{showScoreImage ? "block":"none"}}' mode='widthFix' bindload='scoreImageLoaded' binderror="scoreImageLoadedError"></image>
+                <image src='{{scoreImage}}' style='display:{{showScoreImage ? "block":"none"}}' mode='widthFix' bindload='scoreImageLoaded' binderror="scoreImageLoadedError" bindtap='previewImage'></image>
                 <image src='{{image}}' style='display:{{showScoreImage ? "none":"block"}}' mode='widthFix'></image>
                 <canvas wx:if="{{!done}}" class='wx_canvas1' canvas-id='wx_canvas1'></canvas>
                 <canvas wx:if="{{!done}}" class='wx_canvas2' canvas-id='wx_canvas2'></canvas>

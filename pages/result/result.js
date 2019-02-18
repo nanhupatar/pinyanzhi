@@ -189,7 +189,7 @@ Page({
         // 预览图片
         wx.previewImage({
             urls: [
-                this.data.image_url
+              this.data.scoreImage
             ] // 需要预览的图片http链接列表
         })
     },

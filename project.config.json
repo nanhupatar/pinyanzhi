@@ -9,8 +9,9 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"nodeModules": true,
 		"autoAudits": false,
-		"nodeModules": true
+		"uglifyFileName": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.8",
