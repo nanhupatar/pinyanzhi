@@ -1,0 +1,75 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.8",
+	"appid": "wx87d8c6b830c5f2c3",
+	"projectname": "color_front",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 3,
+			"list": [
+				{
+					"id": 0,
+					"name": "通过分享卡片进入",
+					"pathName": "pages/result/result",
+					"query": "search_id=284",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "分享首页",
+					"pathName": "pages/index/index",
+					"query": "user_id=150",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "通过扫码进入",
+					"pathName": "pages/result/result",
+					"query": "scene=user_id%3d150%26search_id%3d474",
+					"scene": "1008"
+				},
+				{
+					"id": 3,
+					"name": "从群里进来",
+					"pathName": "pages/rank/rank",
+					"query": "openid=xxxxxxxxxxxxxx",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群6",
+						"shareName": "K1MRz59eVoMRcATZVPCIZt1IAAYlQVPFh1y7pobd2zc@cr4dev",
+						"shareKey": "1b4w9WrBb0O02VAirAokVB8BlM30akIHzEH1EVwYqme6C8NUXdnA6P9PPROoTqwn6T2aq-csx6zndYVaKJqUjg~~"
+					}
+				}
+			]
+		}
+	}
+}

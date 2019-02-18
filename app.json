@@ -1,0 +1,29 @@
+{
+    "pages": [
+        "pages/rank/rank",
+        "pages/result/result"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTitleText": "群好友颜值榜",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#f0eff4",
+        "backgroundTextStyle": "dark"
+    },
+    "networkTimeout": {
+        "request": 60000,
+        "downloadFile": 60000,
+        "uploadFile": 60000
+    },
+	"navigateToMiniProgramAppIdList": [
+		"wx5635c0f2018a34b2",
+		"wx67f7929945bd739c",
+		"wxdd9161777b3cc73a",
+		"wxef1f6817759b270d",
+		"wx2196f2b438f9c52d",
+		"wx96f119afb20a56be",
+		"wxf3353a3ec5ac708d",
+		"wxace33926b0a3d5e0",
+		"wx1fbaf044aa75c0bf"
+	]
+}

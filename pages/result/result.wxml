@@ -1,0 +1,38 @@
+<view class="container">
+
+    <view class='measureWarp'>
+
+        <view class='measureCon'>
+            <view class='imageContent'>
+                <image src='{{scoreImage}}' style='display:{{showScoreImage ? "block":"none"}}' mode='widthFix' bindload='scoreImageLoaded' binderror="scoreImageLoadedError"></image>
+                <image src='{{image}}' style='display:{{showScoreImage ? "none":"block"}}' mode='widthFix'></image>
+                <canvas wx:if="{{!done}}" class='wx_canvas1' canvas-id='wx_canvas1'></canvas>
+                <canvas wx:if="{{!done}}" class='wx_canvas2' canvas-id='wx_canvas2'></canvas>
+            </view>
+            <text wx:if="{{done}}" style='padding:15px 30px;'>{{text}}</text>
+        </view>
+
+        <view class='btnWrap'>
+            <view>
+                <button open-type='share' wx:if="{{done && !politician && !openGId }}">分享到群，与好友一决颜值高下</button>
+                <button open-type='getUserInfo' class='imageBtn' bindgetuserinfo="uploadImage">
+                    <image src='/images/cameraWhite.png'></image>
+                    换张照片分更高
+                </button>
+            </view>
+        </view>
+    </view>
+
+</view>
+
+<view class='footer'>
+    <text>该技能由人工智能微软小冰提供</text>
+    <view class='logoWrap'>
+        <image src='/images/MS_logo_Gray.png'></image>
+    </view>
+    <text>隐私条款</text>
+    <text class='gap'>|</text>
+    <text>使用协议</text>
+    <text class='gap'>|</text>
+    <text>©Microsoft</text>
+</view>

@@ -1,0 +1,180 @@
+<view class='rankWrap'>
+
+    <view class='rankWrapInner'>
+
+        <view class='rank'>
+            <image class='crown' src='/images/crown.png'></image>
+            <view class='rankLeft'>
+                <view class='judgment judgment1'>
+                    <image src='/images/1.png'></image>
+                </view>
+                <view class='imageWrap'>
+                    <view class='whiteSpace'>
+                        <image src='{{rank[0].score_avatar}}'></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class='rankRight'>
+                <view class='rankRight_top'>
+                    <view class='name'>{{rank[0].nickname}}</view>
+                    <view class='score'>{{rank[0].score}}分</view>
+                </view>
+
+                <view class='rankRight_bottom'>
+                    {{rank[0].wording}}
+                </view>
+
+            </view>
+        </view>
+
+        <view class='rank'>
+            <view class='rankLeft'>
+                <view class='judgment'>
+                    <image src='/images/2.png'></image>
+                </view>
+
+                <view class='imageWrap'>
+                    <view class='whiteSpace'>
+                        <image src='{{rank[1].score_avatar}}'></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class='rankRight'>
+                <view class='rankRight_top' wx:if="{{rank[1].score !== null}}">
+                    <view class='name'>{{rank[1].nickname}}</view>
+                    <view class='score'>{{rank[1].score}}分</view>
+                </view>
+
+                <view class='rankRight_bottom'>
+                    {{rank[1].wording}}
+                </view>
+
+            </view>
+
+        </view>
+
+        <view class='rank'>
+
+            <view class='rankLeft'>
+                <view class='judgment'>
+                    <image src='/images/3.png'></image>
+                </view>
+
+                <view class='imageWrap'>
+                    <view class='whiteSpace'>
+                        <image src='{{rank[2].score_avatar}}'></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class='rankRight'>
+                <view class='rankRight_top' wx:if="{{rank[2].score !== null}}">
+                    <view class='name'>{{rank[2].nickname}}</view>
+                    <view class='score'>{{rank[2].score}}分</view>
+                </view>
+                <view class='rankRight_bottom'>
+                    {{rank[2].wording}}
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+
+
+    <view class='rank selfRank friendRank' wx:if="{{friend}}">
+
+        <view class='rankLeft'>
+
+            <view>
+                <text>排名：</text>
+                <text>{{friend.top}}/{{count}}</text>
+            </view>
+
+            <view class='friendImage'>
+                <image src='/images/friendRank.png'></image>
+            </view>
+
+            <view class='imageWrap'>
+                <view class='whiteSpace'>
+                    <image src='{{friend.score_avatar}}'></image>
+                </view>
+            </view>
+        </view>
+
+        <view class='rankRight'>
+            <view class='rankRight_top'>
+                <view class='name'>{{friend.nickname}}</view>
+                <view class='score'>{{friend.score}}分</view>
+            </view>
+            <view class='rankRight_bottom'>
+                {{friend.wording}}
+            </view>
+        </view>
+    </view>
+
+
+    <view class='rank selfRank selfRankImg' wx:if="{{own}}">
+
+        <view class='rankLeft'>
+            <view>
+                <text>排名：</text>
+                <text>{{own.top}}/{{count}}</text>
+            </view>
+            <view class='friendImage'>
+                <image src='/images/selfRank.png'></image>
+            </view>
+
+            <view class='imageWrap'>
+                <view class='whiteSpace'>
+                    <image src='{{own.score_avatar}}'></image>
+                </view>
+            </view>
+        </view>
+
+        <view class='rankRight'>
+            <view class='rankRight_top'>
+                <view class='name'>{{own.nickname}}</view>
+                <view class='score'>{{own.score}}分</view>
+            </view>
+            <view class='rankRight_bottom'>
+                {{own.wording}}
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<view class='btnWrap'>
+    <view class='btn2' wx:if="{{own}}">
+        <button wx:if="{{openGId}}" open-type='share'>分享到其他群，问鼎颜值榜</button>
+        <button wx:else open-type='share'>分享到群，与好友一决颜值高下</button>
+        <button open-type='getUserInfo' class='imageBtn' bindgetuserinfo="uploadImage">
+            <image src='/images/cameraWhite.png'></image>
+            换张照片分更高
+        </button>
+    </view>
+
+    <view class='btn1' wx:else>
+        <text>想跟好友一决颜值高下吗？</text>
+        <button open-type='getUserInfo' class='imageBtn1' bindgetuserinfo="uploadImage">
+            <image src='/images/cameraWhite.png'></image>
+            查看我的颜值分
+        </button>
+    </view>
+</view>
+
+<view class='footer'>
+<ad unit-id="adunit-9b793c28b169011f"></ad>
+    <text>该技能由人工智能微软小冰提供</text>
+    <view class='logoWrap'>
+        <image src='/images/MS_logo_Gray.png'></image>
+    </view>
+    <text>隐私条款</text>
+    <text class='gap'>|</text>
+    <text>使用协议</text>
+    <text class='gap'>|</text>
+    <text>©Microsoft</text>
+</view>
