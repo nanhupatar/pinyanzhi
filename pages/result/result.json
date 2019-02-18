@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "我的颜值分"
+    "navigationBarTitleText": "我的颜值分",
+    "usingComponents": {
+        "poster": "wxa-plugin-canvas/poster"
+      }
 }

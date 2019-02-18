@@ -1,0 +1,22 @@
+{
+  "name": "pinyanzhi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nanhupatar/pinyanzhi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nanhupatar/pinyanzhi/issues"
+  },
+  "homepage": "https://github.com/nanhupatar/pinyanzhi#readme",
+  "dependencies": {
+    "wxa-plugin-canvas": "^1.1.9"
+  }
+}
