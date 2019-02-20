@@ -1,5 +1,14 @@
 .container{
-    background: #f8f8f8;
+  background: #f8f8f8;
+}
+
+.container .poster {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .measureWrap {
@@ -36,14 +45,13 @@
 .btnWrap {
     width: 100%;
     background: #f8f8f8;
-    padding: 24px 0;
+    padding: 24px 30px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
 
 .btnWrap button {
-    width: 300px;
     height: 44px;
     background: #fa6b45;
     box-shadow: 0 2px 8px 0 #ffcdbf;
@@ -52,28 +60,23 @@
     color: #fff;
 }
 
-.btnWrap button {
-    margin-bottom: 31px;
+.btnWrap .share button {
+  margin-bottom: 31px; 
 }
 
-.imageBtn {
-    position: relative;
-    padding-left: 50px;
+.btnWrap .action {
+  display: flex;
+  justify-content: space-between;
 }
 
-.imageBtn image {
-    width: 25px;
-    height: 23px;
-    position: absolute;
-    left: 68px;
-    top: 11px;
+.btnWrap .action button {
+    width: 140px;
 }
 
 .imageContent {
     position: relative;
     overflow: hidden;
 }
-
 
 .wx_canvas1 {
     position: absolute;

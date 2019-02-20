@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/rank/rank",
-        "pages/result/result"
+      "pages/result/result",
+      "pages/rank/rank"
     ],
     "window": {
         "navigationBarBackgroundColor": "#ffffff",
