@@ -16,6 +16,86 @@ Page({
         viewScoreImage: false, //显示分数的图片
         openGId: '',
         politician: false, // 敏感
+        posterConfig: {
+            width: 750,
+            height: 1334,
+            backgroundColor: '#fff',
+            debug: false,
+            blocks: [
+                {
+                    width: 690,
+                    height: 910,
+                    x: 30,
+                    y: 153,
+                    borderWidth: 2,
+                    borderColor: '#f0c2a0',
+                    borderRadius: 20,
+                },
+                {
+                    width: 634,
+                    height: 104,
+                    x: 59,
+                    y: 933,
+                    backgroundColor: '#fff',
+                    opacity: 0.5,
+                    zIndex: 100,
+                },
+            ],
+            texts: [
+                {
+                    x: 30,
+                    y: 73,
+                    baseLine: 'top',
+                    text: '颜值鉴定报告',
+                    fontSize: 38,
+                    color: '#080808',
+                },
+                {
+                    x: 92,
+                    y: 965,
+                    fontSize: 30,
+                    baseLine: 'middle',
+                    text: '貌美如花的人呀',
+                    width: 570,
+                    lineNum: 2,
+                    color: '#8d8d8d',
+                    zIndex: 200,
+                },
+                {
+                    x: 360,
+                    y: 1125,
+                    baseLine: 'top',
+                    text: '长按识别小程序码',
+                    fontSize: 38,
+                    color: '#080808',
+                },
+                {
+                    x: 360,
+                    y: 1183,
+                    baseLine: 'top',
+                    text: '谁才是真正的颜值之王',
+                    fontSize: 28,
+                    color: '#929292',
+                },
+            ],
+            images: [
+                {
+                    width: 634,
+                    height: 845,
+                    x: 59,
+                    y: 190,
+                    url: '',
+                },
+                {
+                    width: 220,
+                    height: 220,
+                    x: 92,
+                    y: 1080,
+                    url: '/images/logo.jpg',
+                }
+            ]
+    
+        }
     },
 
     /**
@@ -42,6 +122,18 @@ Page({
         this.setData({
             openGId: app.globalData.openGId
         })
+    },
+
+    onPosterSuccess(e) {
+        const { detail } = e;
+        wx.previewImage({
+            current: detail,
+            urls: [detail]
+        })
+    },
+    
+    onPosterFail(err) {
+        console.error(err);
     },
 
     scoreImageLoaded() {
@@ -144,23 +236,40 @@ Page({
                     },
                     success: function (e) {
                         console.log('请求分数', e);
+                        
+                        let posterConfig = that.data.posterConfig;
+
+                        console.log("设置海报参数");
+                        console.log(imagePath)
+                        posterConfig.images[0].url = 'imagePath';
+                        posterConfig.texts[1].text = e.data.content.text;
+
                         that.data.text = e.data.content.text
+                        
+                        that.setData({
+                            scoreImage: e.data.content.imageUrl,
+                            posterConfig:posterConfig
+                        })
+
+                        
+                        
                         // 敏感图片
-                        if (e.data.content.metadata.AnswerFeed.indexOf("PoliticianImage") >= 0) {
+                        // if (e.data.content.metadata.AnswerFeed.indexOf("PoliticianImage") >= 0) {
 
-                            that.setData({
-                                politician: true,
-                                scoreImage: e.data.content.imageUrl
-                            })
-                        } else if (e.data.content.metadata.face) {
+                        //     that.setData({
+                        //         politician: true,
+                        //         scoreImage: e.data.content.imageUrl
+                        //     })
 
-                            that.setData({
-                                scoreImage: e.data.content.imageUrl,
-                            })
+                        // } else if (e.data.content.metadata.face) {
 
-                        } else {
+                        //     that.setData({
+                        //         scoreImage: e.data.content.imageUrl,
+                        //     })
 
-                        }
+                        // } else {
+
+                        // }
                     },
                     fail: function (e) {
                         that.setData({
@@ -189,10 +298,12 @@ Page({
         // 预览图片
         wx.previewImage({
             urls: [
-              this.data.scoreImage
+                this.data.scoreImage
             ] // 需要预览的图片http链接列表
         })
     },
+
+
 
     /**
      * 用户点击右上角分享

@@ -13,19 +13,18 @@
         </view>
 
         <view class='btnWrap'>
-            <view class='share'>
-                <button open-type='share'>分享到群，一决颜值高低</button>
-            </view>
-            <view class='action'>
-                <button open-type='getUserInfo' bindgetuserinfo="uploadImage">换张照片</button>
-                <button>生成海报</button>
-            </view>
+            <button open-type='share' wx:if="{{done && !politician && !openGId }}">分享到群，与好友一决颜值高下</button>
+            <button open-type='getUserInfo' class='imageBtn' bindgetuserinfo="uploadImage">
+                <image src='/images/cameraWhite.png'></image>
+                    换张照片分更高
+            </button>
+            <poster  id="poster" hide-loading="{{true}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+            <button>生成海报</button>
+            </poster>
         </view>
     </view>
 
-    <view class='poster'>
-      
-    </view>
+    <poster></poster>
 </view>
 
 <view class='footer'>
