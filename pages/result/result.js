@@ -2,6 +2,7 @@
 var app = getApp();
 var config = require('../../utils/config.js');
 var imageProcess = require('../../utils/imageProcess.js');
+import Poster from '../../components/wxa-plugin-canvas/poster/poster';
 
 Page({
 
@@ -16,7 +17,70 @@ Page({
         viewScoreImage: false, //显示分数的图片
         openGId: '',
         politician: false, // 敏感
-        posterConfig: {
+        posterConfig: '', 
+        msImageUrl:'/images/defaultResult.png' //上传到微软服务器的图片地址
+    },
+
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+
+        wx.hideShareMenu();
+        wx.updateShareMenu({
+            withShareTicket: true
+        })
+
+        this.setData({
+            openGId: options.openGId || ''
+        })
+
+        if (options.imagePath) {
+            this.processImage(options.imagePath)
+        }
+    },
+
+
+    onShow() {
+        this.setData({
+            openGId: app.globalData.openGId
+        })
+    },
+
+    onPosterSuccess(e) {
+        const { detail } = e;
+        wx.previewImage({
+            current: detail,
+            urls: [detail]
+        })
+    },
+
+    onPosterFail(err) {
+        console.error(err);
+    },
+
+    scoreImageLoaded() {
+        var that = this;
+        that.setData({
+            showScoreImage: true,
+            done: true,
+            text: that.data.text
+        });
+        console.log('图片加载完毕');
+    },
+
+
+    scoreImageLoadedError() {
+        var that = this;
+        that.setData({
+            done: true,
+            text: '颜值计算失败，请重新操作~'
+        });
+    },
+
+    // 异步生成海报
+    onCreatePoster() {
+        let posterConfig= {
             width: 750,
             height: 1334,
             backgroundColor: '#fff',
@@ -55,7 +119,7 @@ Page({
                     y: 965,
                     fontSize: 30,
                     baseLine: 'middle',
-                    text: '貌美如花的人呀',
+                    text: this.data.text,
                     width: 570,
                     lineNum: 2,
                     color: '#8d8d8d',
@@ -84,7 +148,7 @@ Page({
                     height: 845,
                     x: 59,
                     y: 190,
-                    url: '',
+                    url: this.data.msImageUrl,
                 },
                 {
                     width: 220,
@@ -94,67 +158,15 @@ Page({
                     url: '/images/logo.jpg',
                 }
             ]
-    
         }
-    },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-
-        wx.hideShareMenu();
-        wx.updateShareMenu({
-            withShareTicket: true
-        })
-
-        this.setData({
-            openGId: options.openGId || ''
-        })
-
-        if (options.imagePath) {
-            this.processImage(options.imagePath)
-        }
+    	this.setData({ posterConfig: posterConfig }, () => {
+        	Poster.create(true);    // 入参：true为抹掉重新生成 
+    	});
     },
 
 
-    onShow() {
-        this.setData({
-            openGId: app.globalData.openGId
-        })
-    },
-
-    onPosterSuccess(e) {
-        const { detail } = e;
-        wx.previewImage({
-            current: detail,
-            urls: [detail]
-        })
-    },
-    
-    onPosterFail(err) {
-        console.error(err);
-    },
-
-    scoreImageLoaded() {
-        var that = this;
-        that.setData({
-            showScoreImage: true,
-            done: true,
-            text: that.data.text
-        });
-        console.log('图片加载完毕');
-    },
-
-
-    scoreImageLoadedError() {
-        var that = this;
-        that.setData({
-            done: true,
-            text: '颜值计算失败，请重新操作~'
-        });
-    },
-
+    // 上传图片
     uploadImage: function (event) {
         app.updateUserInfo(event.detail);
         var that = this;
@@ -236,23 +248,13 @@ Page({
                     },
                     success: function (e) {
                         console.log('请求分数', e);
-                        
-                        let posterConfig = that.data.posterConfig;
 
-                        console.log("设置海报参数");
-                        console.log(imagePath)
-                        posterConfig.images[0].url = 'imagePath';
-                        posterConfig.texts[1].text = e.data.content.text;
-
-                        that.data.text = e.data.content.text
-                        
                         that.setData({
                             scoreImage: e.data.content.imageUrl,
-                            posterConfig:posterConfig
+                            text: e.data.content.text,
+                            msImageUrl : imageUrl
                         })
 
-                        
-                        
                         // 敏感图片
                         // if (e.data.content.metadata.AnswerFeed.indexOf("PoliticianImage") >= 0) {
 
@@ -302,8 +304,6 @@ Page({
             ] // 需要预览的图片http链接列表
         })
     },
-
-
 
     /**
      * 用户点击右上角分享
