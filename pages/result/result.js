@@ -101,7 +101,7 @@ Page({
                     x: 59,
                     y: 933,
                     backgroundColor: '#fff',
-                    opacity: 0.5,
+                    opacity: 0.7,
                     zIndex: 100,
                 },
             ],
@@ -122,7 +122,7 @@ Page({
                     text: this.data.text,
                     width: 570,
                     lineNum: 2,
-                    color: '#8d8d8d',
+                    color: '#000',
                     zIndex: 200,
                 },
                 {
@@ -250,7 +250,7 @@ Page({
                         console.log('请求分数', e);
 
                         that.setData({
-                            scoreImage: e.data.content.imageUrl,
+                            scoreImage: imageUrl,
                             text: e.data.content.text,
                             msImageUrl : imageUrl
                         })
