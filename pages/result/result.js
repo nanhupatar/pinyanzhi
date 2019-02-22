@@ -250,7 +250,7 @@ Page({
                         console.log('请求分数', e);
 
                         that.setData({
-                            scoreImage: imageUrl,
+                            scoreImage: e.data.content.imageUrl,
                             text: e.data.content.text,
                             msImageUrl : imageUrl
                         })
