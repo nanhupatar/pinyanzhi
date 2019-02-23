@@ -1,0 +1,3 @@
+<view class="notification" bindtap='setClipboard' >
+  公告:小程序开放关联,数量有限...
+</view>

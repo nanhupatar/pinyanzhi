@@ -50,7 +50,19 @@ Page({
     onPosterSuccess(e) {
         const { detail } = e;
         wx.saveImageToPhotosAlbum({
-            filePath: detail
+            filePath: detail,
+            success: function () {
+                wx.showToast({
+                    title:'鉴定报告已保存至相册',
+                    icon: 'success_no_circle'
+                })
+            },
+            fail:function(){
+                wx.showToast({
+                    title:'鉴定报告下载失败',
+                    icon: 'warn'
+                })
+            }
         })
     },
 
@@ -310,7 +322,7 @@ Page({
      */
     onShareAppMessage: function () {
         return {
-            title: '颜值榜第1就是我，要来一起比比颜值吗？',
+            title: '不好意思，颜值高就是可以为所欲为',
             path: '/pages/rank/rank',
             imageUrl: ''
         };

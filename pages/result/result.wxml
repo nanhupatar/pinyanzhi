@@ -1,3 +1,6 @@
+<!-- 顶部公告栏 -->
+<notification></notification>
+
 <view class="container">
 
     <view class='measureWarp'>
