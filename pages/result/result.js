@@ -17,8 +17,8 @@ Page({
         viewScoreImage: false, //显示分数的图片
         openGId: '',
         politician: false, // 敏感
-        posterConfig: '', 
-        msImageUrl:'/images/defaultResult.png' //上传到微软服务器的图片地址
+        posterConfig: '',
+        msImageUrl: '/images/defaultResult.png' //上传到微软服务器的图片地址
     },
 
     /**
@@ -49,9 +49,8 @@ Page({
 
     onPosterSuccess(e) {
         const { detail } = e;
-        wx.previewImage({
-            current: detail,
-            urls: [detail]
+        wx.saveImageToPhotosAlbum({
+            filePath: detail
         })
     },
 
@@ -80,7 +79,7 @@ Page({
 
     // 异步生成海报
     onCreatePoster() {
-        let posterConfig= {
+        let posterConfig = {
             width: 750,
             height: 1334,
             backgroundColor: '#fff',
@@ -116,12 +115,13 @@ Page({
                 },
                 {
                     x: 92,
-                    y: 965,
+                    y: 950,
                     fontSize: 30,
                     baseLine: 'middle',
                     text: this.data.text,
                     width: 570,
                     lineNum: 2,
+                    lineHeight:40,
                     color: '#000',
                     zIndex: 200,
                 },
@@ -129,7 +129,7 @@ Page({
                     x: 360,
                     y: 1125,
                     baseLine: 'top',
-                    text: '长按识别小程序码',
+                    text: '颜值PK王',
                     fontSize: 38,
                     color: '#080808',
                 },
@@ -160,9 +160,9 @@ Page({
             ]
         }
 
-    	this.setData({ posterConfig: posterConfig }, () => {
-        	Poster.create(true);    // 入参：true为抹掉重新生成 
-    	});
+        this.setData({ posterConfig: posterConfig }, () => {
+            Poster.create(true);    // 入参：true为抹掉重新生成 
+        });
     },
 
 
@@ -252,7 +252,7 @@ Page({
                         that.setData({
                             scoreImage: e.data.content.imageUrl,
                             text: e.data.content.text,
-                            msImageUrl : imageUrl
+                            msImageUrl: imageUrl
                         })
 
                         // 敏感图片
