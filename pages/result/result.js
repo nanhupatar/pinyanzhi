@@ -12,7 +12,7 @@ Page({
     data: {
         image: "/images/defaultResult.png",
         scoreImage: '',
-        text: '上传照片查看我的颜值分~',
+        text: '我这么美，我这么美，我怎么这么美~~',
         done: true,
         viewScoreImage: false, //显示分数的图片
         openGId: '',
@@ -53,7 +53,7 @@ Page({
             filePath: detail,
             success: function () {
                 wx.showToast({
-                    title:'鉴定报告已保存至相册',
+                    title:'已保存到相册',
                     icon: 'success_no_circle'
                 })
             },

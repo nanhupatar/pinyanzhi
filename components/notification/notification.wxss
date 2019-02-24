@@ -1,8 +1,8 @@
 /* components/notification/notification.wxss */
 .notification {
   padding: 3px 0;
-  margin-bottom: 10px;
-  font-size: 14px;
+  margin-bottom: 5px;
+  font-size: 12px;
   text-align: center;
   color: #fff;
   background: rgba(255, 0, 0, .5);
