@@ -141,7 +141,7 @@ Page({
                     x: 360,
                     y: 1125,
                     baseLine: 'top',
-                    text: '颜值PK王',
+                    text: '拼颜值啊',
                     fontSize: 38,
                     color: '#080808',
                 },
@@ -149,7 +149,7 @@ Page({
                     x: 360,
                     y: 1183,
                     baseLine: 'top',
-                    text: '谁才是真正的颜值之王',
+                    text: '长按识别二维码',
                     fontSize: 28,
                     color: '#929292',
                 },
@@ -322,7 +322,7 @@ Page({
      */
     onShareAppMessage: function () {
         return {
-            title: '不好意思，颜值高就是可以为所欲为',
+            title: '@你一起来拼颜值,谁才是颜值榜第一',
             path: '/pages/rank/rank',
             imageUrl: ''
         };
