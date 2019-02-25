@@ -12,13 +12,13 @@ Page({
     data: {
         image: "/images/defaultResult.png",
         scoreImage: '',
-        text: '上传照片查看我的颜值分~',
+        text: '我这么美，我这么美，我怎么这么美~~',
         done: true,
         viewScoreImage: false, //显示分数的图片
         openGId: '',
         politician: false, // 敏感
-        posterConfig: '', 
-        msImageUrl:'/images/defaultResult.png' //上传到微软服务器的图片地址
+        posterConfig: '',
+        msImageUrl: '/images/defaultResult.png' //上传到微软服务器的图片地址
     },
 
     /**
@@ -49,9 +49,20 @@ Page({
 
     onPosterSuccess(e) {
         const { detail } = e;
-        wx.previewImage({
-            current: detail,
-            urls: [detail]
+        wx.saveImageToPhotosAlbum({
+            filePath: detail,
+            success: function () {
+                wx.showToast({
+                    title:'已保存到相册',
+                    icon: 'success_no_circle'
+                })
+            },
+            fail:function(){
+                wx.showToast({
+                    title:'鉴定报告下载失败',
+                    icon: 'warn'
+                })
+            }
         })
     },
 
@@ -80,7 +91,7 @@ Page({
 
     // 异步生成海报
     onCreatePoster() {
-        let posterConfig= {
+        let posterConfig = {
             width: 750,
             height: 1334,
             backgroundColor: '#fff',
@@ -101,7 +112,7 @@ Page({
                     x: 59,
                     y: 933,
                     backgroundColor: '#fff',
-                    opacity: 0.5,
+                    opacity: 0.7,
                     zIndex: 100,
                 },
             ],
@@ -116,20 +127,21 @@ Page({
                 },
                 {
                     x: 92,
-                    y: 965,
+                    y: 950,
                     fontSize: 30,
                     baseLine: 'middle',
                     text: this.data.text,
                     width: 570,
                     lineNum: 2,
-                    color: '#8d8d8d',
+                    lineHeight:40,
+                    color: '#000',
                     zIndex: 200,
                 },
                 {
                     x: 360,
                     y: 1125,
                     baseLine: 'top',
-                    text: '长按识别小程序码',
+                    text: '颜值PK王',
                     fontSize: 38,
                     color: '#080808',
                 },
@@ -160,9 +172,9 @@ Page({
             ]
         }
 
-    	this.setData({ posterConfig: posterConfig }, () => {
-        	Poster.create(true);    // 入参：true为抹掉重新生成 
-    	});
+        this.setData({ posterConfig: posterConfig }, () => {
+            Poster.create(true);    // 入参：true为抹掉重新生成 
+        });
     },
 
 
@@ -252,7 +264,7 @@ Page({
                         that.setData({
                             scoreImage: e.data.content.imageUrl,
                             text: e.data.content.text,
-                            msImageUrl : imageUrl
+                            msImageUrl: imageUrl
                         })
 
                         // 敏感图片
@@ -310,7 +322,7 @@ Page({
      */
     onShareAppMessage: function () {
         return {
-            title: '颜值榜第1就是我，要来一起比比颜值吗？',
+            title: '不好意思，颜值高就是可以为所欲为',
             path: '/pages/rank/rank',
             imageUrl: ''
         };

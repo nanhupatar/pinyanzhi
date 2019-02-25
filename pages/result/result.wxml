@@ -1,3 +1,6 @@
+<!-- 顶部公告栏 -->
+<notification></notification>
+
 <view class="container">
 
     <view class='measureWarp'>
@@ -13,12 +16,12 @@
         </view>
 
         <view class='btnWrap'>
-            <button open-type='share' wx:if="{{done && !politician && !openGId }}">分享到群，与好友一决颜值高下</button>
+            <button open-type='share' wx:if="{{done && !politician && !openGId }}">分享到群，与好友一决颜值高低</button>
             <button open-type='getUserInfo' class='imageBtn' bindgetuserinfo="uploadImage">
                 <image src='/images/cameraWhite.png'></image>
                     换张照片分更高
             </button>
-            <button bindtap="onCreatePoster" style='display:{{showScoreImage ? "block":"none"}}'>生成海报</button>
+            <button bindtap="onCreatePoster" style='display:{{showScoreImage ? "block":"none"}}'>颜值鉴定报告</button>
         </view>
     </view>
 

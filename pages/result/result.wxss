@@ -53,7 +53,7 @@
 }
 
 .btnWrap button {
-    margin-bottom: 31px;
+    margin-bottom: 20px;
 }
 
 .imageBtn {
