@@ -176,8 +176,13 @@ Page({
 
     // 上传图片
     uploadImage: function (event) {
-        app.updateUserInfo(event.detail);
         var that = this;
+        wx.getUserInfo({
+            success: res => {
+                wx.setStorageSync('userInfo', res.userInfo)
+            }
+        })
+
         wx.chooseImage({
             count: 1,
             sourceType: ["album", "camera"],
@@ -225,6 +230,7 @@ Page({
     // 上传报告 imageInfo图片信息, FileId上传文件id , text小冰报告
     uploadReportInfo(imageInfo, FileId, reportInfo,msUrl) {
         let that = this;
+        const userInfo = wx.getStorageSync('userInfo');
         wx.cloud.callFunction({
             // 云函数名称
             name: 'uploadMsReport',
@@ -235,11 +241,12 @@ Page({
                 reportInfo,
                 openId: that.data.openId,
                 timestamp: that.getTimestamp(),
-                msxiaobingUrl:msUrl
+                msxiaobingUrl: msUrl,
+                user:userInfo
             },
             // 传给云函数的参数
             success(res) {
-                console.log("云数据同步成功")
+                console.log("云数据同步成功",res)
             },
             fail: console.error
         })
@@ -311,7 +318,6 @@ Page({
                         });
 
                         if (e.data.content.metadata.face) {
-                            console.log(that.getScore(e.data.content.text))
                             that.uploadImgToCloud(imageInfo, imagePath).then(res=> {
                                 // console.log(res)
                                 const FileId = res.FileId;

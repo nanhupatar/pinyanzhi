@@ -6,13 +6,7 @@ cloud.init()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  // const db = wx.cloud.database();
-  // const trending = db.collection('trending')
-
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
-  }
+  const db = cloud.database();
+  const trending = db.collection('trending')
+  return trending.add({data:event})
 }
