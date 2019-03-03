@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "颜值排行版",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#f0eff4",
+  "backgroundTextStyle": "dark"
+}

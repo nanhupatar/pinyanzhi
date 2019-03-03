@@ -1,5 +1,8 @@
 {
-	"pages": ["pages/result/result"],
+	"pages": [
+		"pages/trending/trending",
+		"pages/result/result"
+	],
 	"window": {
 		"navigationBarBackgroundColor": "#ffffff",
 		"navigationBarTitleText": "群好友颜值榜",
@@ -11,5 +14,23 @@
 		"request": 60000,
 		"downloadFile": 60000,
 		"uploadFile": 60000
+	},
+	"tabBar": {
+		"backgroundColor":"#fffff",
+		"selectedColor":"#d4237a",
+		"list": [
+			{
+				"iconPath":"images/camera-tab.png",
+				"selectedIconPath":"images/camera-tab-active.png",
+				"pagePath": "pages/result/result",
+				"text": "拍照"
+			},
+			{
+				"iconPath":"images/trending-tab.png",
+				"selectedIconPath":"images/trending-tab-active.png",
+				"pagePath": "pages/trending/trending",
+				"text": "颜值榜"
+			}
+		]
 	}
 }

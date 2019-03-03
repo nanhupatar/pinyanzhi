@@ -236,9 +236,9 @@ Page({
             name: 'uploadMsReport',
             data: {
                 score: that.getScore(reportInfo),
-                FileId,
-                imageInfo,
-                reportInfo,
+                FileId:FileId,
+                imageInfo:imageInfo,
+                reportInfo:reportInfo,
                 openId: that.data.openId,
                 timestamp: that.getTimestamp(),
                 msxiaobingUrl: msUrl,
@@ -320,7 +320,8 @@ Page({
                         if (e.data.content.metadata.face) {
                             that.uploadImgToCloud(imageInfo, imagePath).then(res=> {
                                 // console.log(res)
-                                const FileId = res.FileId;
+                                console.log(res)
+                                const FileId = res.fileID;
                                 that.uploadReportInfo(imageInfo,FileId,e.data.content.text,e.data.content.imageUrl)
                             });
                         }
