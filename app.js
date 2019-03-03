@@ -3,8 +3,7 @@
 var imageProcess = require('./utils/imageProcess.js');
 App({
     globalData: {
-        openId: '', // 别人的openid
-        ownOpenId: '',
+        openId: '', // openid
         openGId: '', //群ID，
         shareTicket: '',
         auth: false, //是否授权
@@ -14,14 +13,30 @@ App({
         },
     },
 
-    // 获取排行榜回调函数
-    getRankCallBack: null,
-
-    onLaunch: function(options) {
+    onLaunch: function (options) {
+        if (!wx.cloud) {
+            console.error('请使用 2.2.3 或以上的基础库以使用云能力')
+          } else {
+            wx.cloud.init({ traceUser: true })
+            this.getUserInfo()
+        }
         this.globalData.screenInfo = imageProcess.getScreenInfo();
+
     },
 
-    onShow: function(options) {},
+    getUserInfo: () => {
+        wx.cloud.callFunction({
+            // 云函数名称
+            name: 'getUserInfo',
+            // 传给云函数的参数
+            success(res) {
+                wx.setStorageSync('openId', res.result.openid)
+            },
+            fail: console.error
+        })
+    },
+
+    onShow: (opitions)=> {},
 
     // 页面找不到
     onPageNotFound(e) {},

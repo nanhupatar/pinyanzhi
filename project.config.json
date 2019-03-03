@@ -3,6 +3,7 @@
 	"packOptions": {
 		"ignore": []
 	},
+	"cloudfunctionRoot": "cloudFunctions/",
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
@@ -14,7 +15,7 @@
 		"uglifyFileName": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.8",
+	"libVersion": "2.6.1",
 	"appid": "wx87d8c6b830c5f2c3",
 	"projectname": "color_front",
 	"isGameTourist": false,
