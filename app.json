@@ -1,18 +1,15 @@
 {
-    "pages": [
-      "pages/rank/rank",
-      "pages/result/result"
-    ],
-    "window": {
-        "navigationBarBackgroundColor": "#ffffff",
-        "navigationBarTitleText": "群好友颜值榜",
-        "navigationBarTextStyle": "black",
-        "backgroundColor": "#f0eff4",
-        "backgroundTextStyle": "dark"
-    },
-    "networkTimeout": {
-        "request": 60000,
-        "downloadFile": 60000,
-        "uploadFile": 60000
-    }
+	"pages": ["pages/result/result"],
+	"window": {
+		"navigationBarBackgroundColor": "#ffffff",
+		"navigationBarTitleText": "群好友颜值榜",
+		"navigationBarTextStyle": "black",
+		"backgroundColor": "#f0eff4",
+		"backgroundTextStyle": "dark"
+	},
+	"networkTimeout": {
+		"request": 60000,
+		"downloadFile": 60000,
+		"uploadFile": 60000
+	}
 }

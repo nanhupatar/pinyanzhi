@@ -1,10 +1,5 @@
-<!-- 顶部公告栏 -->
-<notification></notification>
-
 <view class="container">
-
     <view class='measureWarp'>
-
         <view class='measureCon'>
             <view class='imageContent'>
                 <image src='{{scoreImage}}' style='display:{{showScoreImage ? "block":"none"}}' mode='widthFix' bindload='scoreImageLoaded' binderror="scoreImageLoadedError" bindtap='previewImage'></image>
@@ -14,21 +9,23 @@
             </view>
             <text wx:if="{{done}}" style='padding:15px 30px;'>{{text}}</text>
         </view>
-
         <view class='btnWrap'>
-            <button open-type='share' wx:if="{{done && !politician && !openGId }}">分享到群，与好友一决颜值高低</button>
+            <button open-type='share' wx:if="{{done && !politician && !openGId }}">
+                分享到群，与好友一决颜值高低
+            </button>
             <button open-type='getUserInfo' class='imageBtn' bindgetuserinfo="uploadImage">
                 <image src='/images/cameraWhite.png'></image>
-                    换张照片分更高
+                换张照片分更高
             </button>
-            <button bindtap="onCreatePoster" style='display:{{showScoreImage ? "block":"none"}}'>颜值鉴定报告</button>
+            <button bindtap="onCreatePoster" style='display:{{showScoreImage ? "block":"none"}}'>
+                颜值鉴定报告
+            </button>
         </view>
     </view>
-
     <poster wx:if="{{scoreImage}}" id="poster" hide-loading="{{true}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"></poster>
 </view>
-
 <view class='footer'>
+    <ad unit-id="adunit-95458ea2906e9072"></ad>
     <text>该技能由人工智能微软小冰提供</text>
     <view class='logoWrap'>
         <image src='/images/MS_logo_Gray.png'></image>

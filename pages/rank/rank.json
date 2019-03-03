@@ -1,6 +1,0 @@
-{
-    "enablePullDownRefresh":true,
-    "usingComponents": {
-        "notification": "../../components/notification/notification"
-    }
-}
