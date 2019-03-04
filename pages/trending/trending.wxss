@@ -1,6 +1,23 @@
-.img_item {
+.col {
   width: 48%;
   margin: 1%;
   display: inline-block;
   vertical-align: top;
+}
+
+.col .item {
+  position: relative;
+}
+
+.item .grade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(0,0,0,0.4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
 }

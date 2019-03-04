@@ -8,7 +8,7 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database();
   const trending = db.collection('trending');
-  const trendingList = await trending.orderBy('timestamp', 'desc').orderBy('score', 'desc').get()
-  
+  const skip = event.pageNum*10;
+  const trendingList = await trending.orderBy('timestamp', 'desc').orderBy('score', 'desc').skip(skip).limit(10).get() 
   return trendingList;
 }

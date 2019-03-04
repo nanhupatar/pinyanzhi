@@ -1,17 +1,19 @@
-<view style="">
-  <image wx:for="{{images}}" wx:key="id" id="{{item.FileId}}" src="{{item.FileId}}" ></image>
+<view style="display:none">
+  <image wx:for="{{images}}" wx:key="id" id="{{item._id}}" src="{{item.FileId}}" bindload="onImageLoad"></image>
 </view>
-<!-- <scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="loadImages">
+<scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="loadImages">
   <view style="width:100%">
-    <view class="img_item">
-      <view wx:for="{{col1}}" wx:key="FileId">
-        <image src="{{item.FileId}}" style="width:100%;height:{{item.height}}px"></image>
+    <view class="col">
+      <view wx:for="{{col1}}" wx:key="id" class="item">
+        <view class="grade">{{item.score}}</view>
+        <image src="{{item.FileId}}" data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="previewImg"></image>
       </view>
     </view>
-    <view class="img_item">
-      <view wx:for="{{col2}}" wx:key="FileId">
-        <image src="{{item.FileId}}" style="width:100%;height:{{item.height}}px"></image>
+    <view class="col">
+      <view wx:for="{{col2}}" wx:key="id" class="item">
+        <view class="grade">{{item.score}}</view>
+        <image src="{{item.FileId}}" data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="previewImg"></image>
       </view>
     </view>
   </view>
-</scroll-view> -->
+</scroll-view>
