@@ -30,10 +30,6 @@ Page({
       withShareTicket: true
     });
 
-    this.setData({
-      openGId: options.openGId || ""
-    });
-
     if (options.imagePath) {
       this.processImage(options.imagePath);
     }
@@ -52,12 +48,12 @@ Page({
       success: function() {
         wx.showToast({
           title: "已保存到相册",
-          icon: "success_no_circle"
+          icon: "none"
         });
       },
       fail: function() {
         wx.showToast({
-          title: "鉴定报告下载失败",
+          title: "下载失败",
           icon: "warn"
         });
       }
@@ -229,19 +225,16 @@ Page({
   },
 
   // 上传报告 imageInfo图片信息, FileId上传文件id , text小冰报告
-  uploadReportInfo(imageInfo, FileId, reportInfo, msUrl) {
+  uploadReportInfo(fileId, text, msUrl) {
     let that = this;
     const userInfo = wx.getStorageSync("userInfo");
     wx.cloud.callFunction({
       // 云函数名称
       name: "uploadMsReport",
       data: {
-        score: that.getScore(reportInfo),
-        FileId: FileId,
-        imageInfo: imageInfo,
-        reportInfo: reportInfo,
-        openId: that.data.openId,
-        timestamp: that.getTimestamp(),
+        score: that.getScore(text),
+        fileId: fileId,
+        text: text,
         msxiaobingUrl: msUrl,
         user: userInfo
       },
@@ -320,12 +313,10 @@ Page({
 
             if (e.data.content.metadata.face) {
               that.uploadImgToCloud(imageInfo, imagePath).then(res => {
-                // console.log(res)
                 console.log(res);
-                const FileId = res.fileID;
+                const fileId = res.fileID;
                 that.uploadReportInfo(
-                  imageInfo,
-                  FileId,
+                  fileId,
                   e.data.content.text,
                   e.data.content.imageUrl
                 );

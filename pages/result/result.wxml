@@ -10,9 +10,7 @@
             <text wx:if="{{done}}" style='padding:15px 30px;'>{{text}}</text>
         </view>
         <view class='btnWrap'>
-            <button open-type='share' wx:if="{{done && !politician && !openGId }}">
-                分享到群，与好友一决颜值高低
-            </button>
+            <button open-type='share' wx:if="{{done }}">分享到群，与好友一决颜值高低</button>
             <button open-type='getUserInfo' class='imageBtn' bindgetuserinfo="uploadImage">
                 <image src='/images/cameraWhite.png'></image>
                 换张照片分更高
