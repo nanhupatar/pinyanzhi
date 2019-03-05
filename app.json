@@ -1,5 +1,6 @@
 {
 	"pages": [
+		"pages/photo/photo",
 		"pages/trending/trending",
 		"pages/result/result"
 	],
@@ -16,18 +17,24 @@
 		"uploadFile": 60000
 	},
 	"tabBar": {
-		"backgroundColor":"#fffff",
-		"selectedColor":"#d4237a",
+		"backgroundColor": "#fffff",
+		"selectedColor": "#d4237a",
 		"list": [
 			{
-				"iconPath":"images/camera-tab.png",
-				"selectedIconPath":"images/camera-tab-active.png",
+				"iconPath": "images/camera-tab.png",
+				"selectedIconPath": "images/camera-tab-active.png",
 				"pagePath": "pages/result/result",
 				"text": "拍照"
 			},
 			{
-				"iconPath":"images/trending-tab.png",
-				"selectedIconPath":"images/trending-tab-active.png",
+				"iconPath": "images/photo-tab.png",
+				"selectedIconPath": "images/photo-tab-active.png",
+				"pagePath": "pages/photo/photo",
+				"text": "我的"
+			},
+			{
+				"iconPath": "images/trending-tab.png",
+				"selectedIconPath": "images/trending-tab-active.png",
 				"pagePath": "pages/trending/trending",
 				"text": "颜值榜"
 			}
