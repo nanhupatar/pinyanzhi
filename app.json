@@ -1,43 +1,33 @@
 {
-	"pages": [
-		"pages/photo/photo",
-		"pages/trending/trending",
-		"pages/result/result"
-	],
-	"window": {
-		"navigationBarBackgroundColor": "#ffffff",
-		"navigationBarTitleText": "群好友颜值榜",
-		"navigationBarTextStyle": "black",
-		"backgroundColor": "#f0eff4",
-		"backgroundTextStyle": "dark"
-	},
-	"networkTimeout": {
-		"request": 60000,
-		"downloadFile": 60000,
-		"uploadFile": 60000
-	},
-	"tabBar": {
-		"backgroundColor": "#fffff",
-		"selectedColor": "#d4237a",
-		"list": [
-			{
-				"iconPath": "images/camera-tab.png",
-				"selectedIconPath": "images/camera-tab-active.png",
-				"pagePath": "pages/result/result",
-				"text": "拍照"
-			},
-			{
-				"iconPath": "images/photo-tab.png",
-				"selectedIconPath": "images/photo-tab-active.png",
-				"pagePath": "pages/photo/photo",
-				"text": "我的"
-			},
-			{
-				"iconPath": "images/trending-tab.png",
-				"selectedIconPath": "images/trending-tab-active.png",
-				"pagePath": "pages/trending/trending",
-				"text": "颜值榜"
-			}
-		]
-	}
+  "pages": ["pages/trending/trending", "pages/result/result"],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "群好友颜值榜",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f0eff4",
+    "backgroundTextStyle": "dark"
+  },
+  "networkTimeout": {
+    "request": 60000,
+    "downloadFile": 60000,
+    "uploadFile": 60000
+  },
+  "tabBar": {
+    "backgroundColor": "#fffff",
+    "selectedColor": "#d4237a",
+    "list": [
+      {
+        "iconPath": "images/camera-tab.png",
+        "selectedIconPath": "images/camera-tab-active.png",
+        "pagePath": "pages/result/result",
+        "text": "拍照"
+      },
+      {
+        "iconPath": "images/trending-tab.png",
+        "selectedIconPath": "images/trending-tab-active.png",
+        "pagePath": "pages/trending/trending",
+        "text": "颜值榜"
+      }
+    ]
+  }
 }

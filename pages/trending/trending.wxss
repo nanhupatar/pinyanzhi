@@ -1,23 +1,47 @@
 .col {
-  width: 48%;
-  margin: 1%;
+  width: 47%;
+  margin: 1.5%;
   display: inline-block;
   vertical-align: top;
 }
 
 .col .item {
   position: relative;
+  font-size: 0;
+  margin-bottom: 15rpx;
 }
 
-.item .grade {
+.item .img {
+  border-radius: 6px 6px 0 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.item .score {
+}
+
+.item .image-info {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(0,0,0,0.4);
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #fff;
+  padding: 0 5px;
+  height: 30px;
+  background: #ffffff;
+  border-radius: 0 0 6px 6px;
+  font-size: 14px;
+  color: #666666;
+}
+
+.image-info .avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+}
+
+.image-info .user-name {
+  margin-left: 10px;
+  width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

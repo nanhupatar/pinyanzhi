@@ -4,15 +4,17 @@
 <scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="loadImages">
   <view style="width:100%">
     <view class="col">
-      <view wx:for="{{col1}}" wx:key="id" class="item">
-        <view class="grade">{{item.score}}</view>
-        <image src="{{item.fileId}}" data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="previewImg"></image>
+      <view wx:for="{{images}}" wx:if="{{index%2==0}}" wx:key="id" class="item">
+        <image src="{{item.fileId}}" class='img' data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="previewImg"></image>
+        <view class='image-info'>
+          <image class='avatar' src='{{item.user.avatarUrl}}'></image>
+          <view class="user-name">{{item.user.nickName}}</view>
+        </view>
       </view>
     </view>
     <view class="col">
       <view wx:for="{{col2}}" wx:key="id" class="item">
-        <view class="grade">{{item.score}}</view>
-        <image src="{{item.fileId}}" data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="previewImg"></image>
+        <image src="{{item.fileId}}" class='img' data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="previewImg"></image>
       </view>
     </view>
   </view>
