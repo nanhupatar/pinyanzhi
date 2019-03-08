@@ -19,6 +19,11 @@
 }
 
 .item .score {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 18px;
+  color: #d4237a;
 }
 
 .item .image-info {

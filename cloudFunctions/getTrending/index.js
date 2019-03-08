@@ -8,11 +8,19 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext();
   const db = cloud.database();
   const trending = db.collection("trending");
-  const skip = event.pageNum * 10;
+  const pageSize = event.pageSize;
+  const pageNum = event.pageNum;
+  const skip = (pageNum - 1) * 10;
+  const count = await trending.count();
   const trendingList = await trending
     .orderBy("score", "desc")
     .skip(skip)
-    .limit(10)
+    .limit(pageSize)
     .get();
-  return trendingList;
+
+  return {
+    totalPage: Math.ceil(count.total / pageSize),
+    data: trendingList.data,
+    pageNum: pageNum
+  };
 };

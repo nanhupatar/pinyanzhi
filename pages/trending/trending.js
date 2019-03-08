@@ -9,7 +9,8 @@ Page({
     images: [],
     col1: [],
     col2: [],
-    pageNum: 0
+    pageNum: 1,
+    totalPage: 0
   },
 
   onLoad: function() {
@@ -25,26 +26,19 @@ Page({
           scrollH: scrollH,
           imgWidth: imgWidth
         });
+        that.loadImages();
       }
     });
   },
 
-  onShow: function() {
-    let that = this;
-    this.setData({
-      pageNum: 0
-    });
-    that.loadImages();
-  },
+  onShow: function() {},
 
   formateImages: function(list) {
     for (let i = 0; i < list.length; i++) {
       list[i].height = 0;
     }
-    this.setData({
-      images: list,
-      loadingCount: list.length
-    });
+
+    return list;
   },
 
   onImageLoad: function(e) {
@@ -60,7 +54,7 @@ Page({
 
     for (let i = 0; i < images.length; i++) {
       let img = images[i];
-      if (img._id === imageId) {
+      if (img.fileId === imageId) {
         imageObj = img;
         break;
       }
@@ -68,7 +62,6 @@ Page({
 
     imageObj.height = imgHeight;
 
-    let loadingCount = this.data.loadingCount - 1;
     let col1 = this.data.col1;
     let col2 = this.data.col2;
 
@@ -81,7 +74,6 @@ Page({
     }
 
     let data = {
-      loadingCount: loadingCount,
       col1: col1,
       col2: col2
     };
@@ -96,15 +88,21 @@ Page({
       name: "getTrending",
       // 传给云函数的参数
       data: {
-        pageNum: that.data.pageNum
+        pageNum: that.data.pageNum,
+        pageSize: 10
       },
       success(res) {
         console.log("获取排行版数据", res);
-        // that.setData({
-        //   images: res.result.data,
-        //   loadingCount: res.result.data.length,
-        //   pageNum: that.data.pageNum + 1
-        // });
+        let result = res.result;
+        let imageList = that.data.images.concat(result.data);
+
+        imageList = that.formateImages(imageList);
+        console.log(imageList);
+        that.setData({
+          images: imageList,
+          loadingCount: imageList.length,
+          pageNum: that.data.pageNum + 1
+        });
       },
       fail: console.error
     });
