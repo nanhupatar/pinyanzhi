@@ -12,13 +12,23 @@ Page({
     done: false,
     imageInfo: '',
     storeImagePath: '',
-    posterConfig: ''
+    posterConfig: '',
+    windowWidth:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.getSystemInfo({
+      success: res => {
+        let ww = res.windowWidth;
+        let wh = res.windowHeight;
+        this.setData({
+          windowWidth:ww
+        });
+      }
+    });
     if (options.fileId) {
       this.getImageReport(options.fileId);
     }

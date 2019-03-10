@@ -3,7 +3,7 @@
   <text class="username">{{imageInfo.user.nickName}}</text>
 </view>
 <view class='scoreImage-container' wx:if="{{done}}">
-  <image class='scoreImage' src='{{imageInfo.fileId}}'></image>
+  <image class='scoreImage' src='{{imageInfo.fileId}}' style='height:calc({{imageInfo.imageInfo.height/imageInfo.imageInfo.width*0.8*windowWidth}}px)'></image>
 </view>
 <view wx:if="{{done}}" class='scoreText'>{{imageInfo.text}}</view>
 <ad unit-id="adunit-95458ea2906e9072"></ad>

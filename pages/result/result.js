@@ -79,24 +79,24 @@ Page({
 
   onPosterSuccess(e) {
     const { detail } = e;
-    // wx.saveImageToPhotosAlbum({
-    //   filePath: detail,
-    //   success: function() {
-    //     wx.showToast({
-    //       title: "已保存到相册",
-    //       icon: "none"
-    //     });
-    //   },
-    //   fail: function() {
-    //     wx.showToast({
-    //       title: "下载失败",
-    //       icon: "warn"
-    //     });
-    //   }
-    // });
-    wx.previewImage({
-      urls: [detail]
+    wx.saveImageToPhotosAlbum({
+      filePath: detail,
+      success: function() {
+        wx.showToast({
+          title: "已保存到相册",
+          icon: "none"
+        });
+      },
+      fail: function() {
+        wx.showToast({
+          title: "下载失败",
+          icon: "warn"
+        });
+      }
     });
+    // wx.previewImage({
+    //   urls: [detail]
+    // });
   },
 
   onPosterFail(err) {
