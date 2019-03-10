@@ -15,7 +15,7 @@
 		"uglifyFileName": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.1",
+	"libVersion": "2.6.2",
 	"appid": "wx87d8c6b830c5f2c3",
 	"projectname": "color_front",
 	"isGameTourist": false,

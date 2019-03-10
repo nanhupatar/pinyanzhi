@@ -1,0 +1,15 @@
+
+<scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="loadImages" >
+<ad unit-id="adunit-95458ea2906e9072"></ad>
+<view wx:if="{{!done}}">暂无内容。。。</view>
+  <view class='image-container' wx:if="{{done}}">
+    <view class='image-item' wx:for="{{images}}" wx:key="{{id}}">
+      <image class='img' data-item='{{item}}' data-index="{{index}}" src="{{item.fileId}}" bindtap='goDetail'></image>
+      <view class='del' data-item='{{item}}' data-index="{{index}}"  bindtap='deleteImage'><text class='iconfont icon-shanchu'></text>删除</view>
+    </view>
+  </view>
+  <block wx:if="{{done}}">
+   <view class='lower-tip' wx:if="{{pageNum>totalPage}}">~已经加载到底了~</view>
+   <view class='lower-tip' wx:else>~已经加载到底了~</view>
+  </block>
+</scroll-view>

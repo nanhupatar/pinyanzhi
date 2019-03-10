@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "独乐乐不如众乐乐",
+  "usingComponents": {
+    "poster":"/components/wxa-plugin-canvas/poster/index"
+  }
+}

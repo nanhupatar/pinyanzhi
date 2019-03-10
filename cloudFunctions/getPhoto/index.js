@@ -8,12 +8,18 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext();
   const db = cloud.database();
   const openid = wxContext.OPENID;
-  const reportCollection = db.collection("report");
+  const trending = db.collection("trending");
+  const pageSize = event.pageSize;
+  const pageNum = event.pageNum;
+  const skip = (pageNum - 1) * 10;
+  const count = await trending.count();
+  const data = await trending.where({
+    OPENID:openid
+  }).skip(skip).limit(pageSize).orderBy('timestamps', "desc").get();
 
   return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID
+    data:data.data,
+    totalPage: Math.ceil(count.total / pageSize),
+    pageNum:pageNum
   };
 };

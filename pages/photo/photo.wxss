@@ -1,0 +1,32 @@
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-container .image-item {
+
+  width: 48%;
+  margin: 1% 1% 15px 1%;
+  background: #ffffff;
+}
+
+.image-item .img {
+  width: 100%;
+  height: 180px
+}
+
+.image-item .del {
+  display: flex;
+  align-items: center;
+  padding: 3px 10px;
+  color: red;
+}
+
+.lower-tip {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  font-size: 15px;
+  color: #666666;
+}

@@ -6,7 +6,7 @@
     <view class="col">
       <view wx:for="{{col1}}" wx:key="id" class="item">
         <view class='score'>{{item.score}}</view>
-        <image src="{{item.fileId}}" class='img' data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="previewImg"></image>
+        <image src="{{item.fileId}}" class='img' data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="goDetail"></image>
         <view class='image-info'>
           <image class='avatar' src='{{item.user.avatarUrl}}'></image>
           <view class="user-name">{{item.user.nickName}}</view>
@@ -15,13 +15,16 @@
     </view>
     <view class="col">
       <view wx:for="{{col2}}" wx:key="id" class="item">
-      <view class='score'>{{item.score}}</view>
-        <image src="{{item.fileId}}" class='img' data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="previewImg"></image>
-          <view class='image-info'>
+        <view class='score'>{{item.score}}</view>
+        <image src="{{item.fileId}}" class='img' data-item="{{item}}" style="width:100%;height:{{item.height}}px" bindtap="goDetail"></image>
+        <view class='image-info'>
           <image class='avatar' src='{{item.user.avatarUrl}}'></image>
           <view class="user-name">{{item.user.nickName}}</view>
         </view>
       </view>
     </view>
   </view>
+  <view class="lower-tip" wx:if="{{pageNum>totalPage}}">~亲，没有数据了~</view>
+  <view class="lower-tip" wx:else>~下拉加载更多~</view>
+  <ad unit-id="adunit-95458ea2906e9072"></ad>
 </scroll-view>

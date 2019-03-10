@@ -10,11 +10,18 @@ Page({
     col1: [],
     col2: [],
     pageNum: 1,
-    totalPage: 0
+    totalPage: 2
   },
 
   onLoad: function() {
     let that = this;
+    col1H = 0;
+    col2H = 0;
+    that.setData({
+      col1: [],
+      col2: []
+    });
+
     wx.getSystemInfo({
       success: res => {
         let ww = res.windowWidth;
@@ -83,29 +90,33 @@ Page({
 
   loadImages: function() {
     let that = this;
-    wx.cloud.callFunction({
-      // 云函数名称
-      name: "getTrending",
-      // 传给云函数的参数
-      data: {
-        pageNum: that.data.pageNum,
-        pageSize: 10
-      },
-      success(res) {
-        console.log("获取排行版数据", res);
-        let result = res.result;
-        let imageList = that.data.images.concat(result.data);
+    // 加载到底了
+    if (that.data.pageNum <= that.data.totalPage) {
+      wx.cloud.callFunction({
+        // 云函数名称
+        name: "getTrending",
+        // 传给云函数的参数
+        data: {
+          pageNum: that.data.pageNum,
+          pageSize: 10
+        },
+        success(res) {
+          console.log("获取排行版数据", res);
+          let result = res.result;
+          let imageList = that.data.images.concat(result.data);
 
-        imageList = that.formateImages(imageList);
-        console.log(imageList);
-        that.setData({
-          images: imageList,
-          loadingCount: imageList.length,
-          pageNum: that.data.pageNum + 1
-        });
-      },
-      fail: console.error
-    });
+          imageList = that.formateImages(imageList);
+          console.log(imageList);
+          that.setData({
+            images: imageList,
+            loadingCount: imageList.length,
+            pageNum: that.data.pageNum + 1,
+            totalPage: result.totalPage
+          });
+        },
+        fail: console.error
+      });
+    }
   },
 
   previewImg: function(e) {
@@ -113,5 +124,13 @@ Page({
     wx.previewImage({
       urls: [fileId]
     });
+  },
+
+  // 跳转至页面详情
+  goDetail:function(e) {
+    const fileId = e.currentTarget.dataset.item.fileId;
+    wx.navigateTo({
+      url: '../detail/detail?fileId='+fileId
+    })
   }
 });

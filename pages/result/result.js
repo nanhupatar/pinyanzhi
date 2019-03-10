@@ -3,6 +3,7 @@ var app = getApp();
 var config = require("../../utils/config.js");
 var imageProcess = require("../../utils/imageProcess.js");
 import Poster from "../../components/wxa-plugin-canvas/poster/poster";
+var PosterConfig = require("../../config/posterDefaultConf.js");
 
 Page({
   /**
@@ -18,7 +19,9 @@ Page({
     politician: false, // 敏感
     posterConfig: "",
     msImageUrl: "/images/defaultResult.png", //上传到微软服务器的图片地址
-    openId: wx.getStorageSync("openId")
+    openId: wx.getStorageSync("openId"),
+    onsharing:false,
+    fileId:''
   },
 
   /**
@@ -29,34 +32,70 @@ Page({
     wx.updateShareMenu({
       withShareTicket: true
     });
+    // 初次登陆，获取最近上传的照片
+    this.getLatestImage();
 
-    if (options.imagePath) {
-      this.processImage(options.imagePath);
-    }
+    // if (options.imagePath) {
+    //   this.processImage(options.imagePath);
+    // }
   },
 
   onShow() {
-    this.setData({
-      openGId: app.globalData.openGId
+    // this.getLatestImage();
+  },
+
+  getLatestImage() {
+    let that = this;
+
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: "getLatestImage",
+      // 传给云函数的参数
+      success(res) {
+        console.log("获取最新上传的图片", res);
+        if(res.result.data.length>0){
+          let result = res.result.data[0];
+          let fileId = result.fileId;
+          wx.cloud.downloadFile({
+            fileID: fileId
+          }).then(res => {  
+  
+            console.log(res.tempFilePath);
+            let imagePath = res.tempFilePath;
+            that.setData({
+              done: true,
+              scoreImage:result.msxiaobingUrl,
+              text:result.text,
+              image:fileId,
+              msImageUrl:result.base64Url,
+              fileId:fileId
+            })
+          })
+        }
+      },
+      fail: console.error
     });
   },
 
   onPosterSuccess(e) {
     const { detail } = e;
-    wx.saveImageToPhotosAlbum({
-      filePath: detail,
-      success: function() {
-        wx.showToast({
-          title: "已保存到相册",
-          icon: "none"
-        });
-      },
-      fail: function() {
-        wx.showToast({
-          title: "下载失败",
-          icon: "warn"
-        });
-      }
+    // wx.saveImageToPhotosAlbum({
+    //   filePath: detail,
+    //   success: function() {
+    //     wx.showToast({
+    //       title: "已保存到相册",
+    //       icon: "none"
+    //     });
+    //   },
+    //   fail: function() {
+    //     wx.showToast({
+    //       title: "下载失败",
+    //       icon: "warn"
+    //     });
+    //   }
+    // });
+    wx.previewImage({
+      urls: [detail]
     });
   },
 
@@ -84,87 +123,11 @@ Page({
 
   // 异步生成海报
   onCreatePoster() {
-    let posterConfig = {
-      width: 750,
-      height: 1334,
-      backgroundColor: "#fff",
-      debug: false,
-      blocks: [
-        {
-          width: 690,
-          height: 910,
-          x: 30,
-          y: 153,
-          borderWidth: 2,
-          borderColor: "#f0c2a0",
-          borderRadius: 20
-        },
-        {
-          width: 634,
-          height: 104,
-          x: 59,
-          y: 933,
-          backgroundColor: "#fff",
-          opacity: 0.7,
-          zIndex: 100
-        }
-      ],
-      texts: [
-        {
-          x: 30,
-          y: 73,
-          baseLine: "top",
-          text: "颜值鉴定报告",
-          fontSize: 38,
-          color: "#080808"
-        },
-        {
-          x: 92,
-          y: 950,
-          fontSize: 30,
-          baseLine: "middle",
-          text: this.data.text,
-          width: 570,
-          lineNum: 2,
-          lineHeight: 40,
-          color: "#000",
-          zIndex: 200
-        },
-        {
-          x: 360,
-          y: 1125,
-          baseLine: "top",
-          text: "拼颜值啊",
-          fontSize: 38,
-          color: "#080808"
-        },
-        {
-          x: 360,
-          y: 1183,
-          baseLine: "top",
-          text: "长按识别二维码",
-          fontSize: 28,
-          color: "#929292"
-        }
-      ],
-      images: [
-        {
-          width: 634,
-          height: 845,
-          x: 59,
-          y: 190,
-          url: this.data.msImageUrl
-        },
-        {
-          width: 220,
-          height: 220,
-          x: 92,
-          y: 1080,
-          url: "/images/logo.jpg"
-        }
-      ]
-    };
+    let that = this;
 
+    let posterConfig = PosterConfig.posterConfig;
+    posterConfig.texts[1].text = that.data.text;
+    posterConfig.images[0].url = that.data.msImageUrl;
     this.setData({ posterConfig: posterConfig }, () => {
       Poster.create(true); // 入参：true为抹掉重新生成
     });
@@ -225,22 +188,25 @@ Page({
   },
 
   // 上传报告 imageInfo图片信息, FileId上传文件id , text小冰报告
-  uploadReportInfo(fileId, text, msUrl) {
+  uploadReportInfo(imageInfo,fileId, text, msUrl,base64Url) {
     let that = this;
     const userInfo = wx.getStorageSync("userInfo");
     wx.cloud.callFunction({
       // 云函数名称
       name: "uploadMsReport",
       data: {
+        imageInfo:imageInfo,
         score: that.getScore(text),
         fileId: fileId,
         text: text,
         msxiaobingUrl: msUrl,
-        user: userInfo
+        user: userInfo,
+        base64Url:base64Url
       },
       // 传给云函数的参数
       success(res) {
         console.log("云数据同步成功", res);
+        that.setData({fileId:fileId});
       },
       fail: console.error
     });
@@ -275,7 +241,7 @@ Page({
 
         if (200 != res.statusCode) {
           that.setData({
-            text: "计算失败，我永远做不到在没有网络的时候看出你的颜值",
+            text: "颜值计算失败，请重新操作~",
             done: true
           });
           return;
@@ -316,9 +282,11 @@ Page({
                 console.log(res);
                 const fileId = res.fileID;
                 that.uploadReportInfo(
+                  imageInfo,
                   fileId,
                   e.data.content.text,
-                  e.data.content.imageUrl
+                  e.data.content.imageUrl,
+                  imageUrl
                 );
               });
             }
@@ -343,7 +311,7 @@ Page({
   previewImage: function() {
     // 预览图片
     wx.previewImage({
-      urls: [this.data.scoreImage] // 需要预览的图片http链接列表
+      urls: [this.data.image] // 需要预览的图片http链接列表
     });
   },
 
@@ -351,10 +319,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
+    let that = this;
     return {
-      title: "@你一起来拼颜值,谁才是颜值榜第一",
-      path: "/pages/result",
-      imageUrl: ""
+      title: that.data.text,
+      path: "/pages/detail?fileId="+that.data.fileId,
+      imageUrl: that.data.msImageUrl
     };
   }
 });

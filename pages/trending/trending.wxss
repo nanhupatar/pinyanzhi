@@ -50,3 +50,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.lower-tip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-bottom: 20px;
+  color: #666666;
+  font-size: 14px;
+}

@@ -1,0 +1,23 @@
+<view class="userInfo" wx:if="{{done}}">
+  <image src="{{imageInfo.user.avatarUrl}}" class="avatar"></image>
+  <text class="username">{{imageInfo.user.nickName}}</text>
+</view>
+<view class='scoreImage-container' wx:if="{{done}}">
+  <image class='scoreImage' src='{{imageInfo.fileId}}'></image>
+</view>
+<view wx:if="{{done}}" class='scoreText'>{{imageInfo.text}}</view>
+<ad unit-id="adunit-95458ea2906e9072"></ad>
+<view class='share' wx:if="{{done}}">
+  <button class='share-item' open-type='share' plain="true">
+    <text class='iconfont icon-fenxiang'></text>
+    <text class='share-item-text'>分享</text>
+  </button>
+  <button class='share-item' plain="true" bindtap="onCreatePoster">
+    <text class='iconfont icon-xiazai'></text>
+    <text class='share-item-text'>下载海报</text>
+  </button>
+</view>
+<poster wx:if="{{done}}" id="poster" hide-loading="{{true}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"></poster>
+<view class='backBtn'>
+  <button plain="true" bindtap="backToResult" class='back'>继续测颜值</button>
+</view>
