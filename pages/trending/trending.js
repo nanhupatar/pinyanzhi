@@ -33,12 +33,26 @@ Page({
           scrollH: scrollH,
           imgWidth: imgWidth
         });
-        that.loadImages();
+        // that.loadImages();
       }
     });
   },
 
-  onShow: function() {},
+  onShow: function() {
+    col1H=0;
+    col2H = 0;
+    
+    this.setData({
+      col1: [],
+      col2: [],
+      pageNum: 1,
+      totalPage: 2,
+      loadingCount: 0,
+      images:[]
+    },()=>{
+      this.loadImages();
+    });
+  },
 
   formateImages: function(list) {
     for (let i = 0; i < list.length; i++) {

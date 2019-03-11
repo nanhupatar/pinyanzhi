@@ -322,7 +322,7 @@ Page({
     let that = this;
     return {
       title: that.data.text,
-      path: "/pages/detail?fileId="+that.data.fileId,
+      path: "/pages/detail/detail?fileId="+that.data.fileId,
       imageUrl: that.data.msImageUrl
     };
   }

@@ -77,7 +77,7 @@ Page({
     let that = this;
     return {
       title: that.data.imageInfo.text,
-      path: "/pages/result",
+      path: "/pages/detail/detail?fileId="+that.data.imageInfo.fileId,
       imageUrl: that.data.imageInfo.base64Url
     };
   },
@@ -109,7 +109,7 @@ Page({
 
     let posterConfig = PosterConfig.posterConfig;
     posterConfig.texts[1].text = that.data.imageInfo.text;
-    posterConfig.images[0].url = 'https://mediaplatform.msxiaobing.com/image/fetchimage?key=JMGkDUAgawPViXb1PdAUJUUNm99C27JKUcSooal1XfY9zDVABtKoDeKy1A8';
+    posterConfig.images[0].url = that.data.imageInfo.base64Url;
     this.setData({ posterConfig: posterConfig }, () => {
       Poster.create(true); // 入参：true为抹掉重新生成
     });

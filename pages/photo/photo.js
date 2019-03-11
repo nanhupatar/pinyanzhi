@@ -26,7 +26,6 @@ Page({
         this.setData({
           scrollH: scrollH
         });
-        this.loadImages();
       }
     });
   },
