@@ -53,55 +53,7 @@ Page({
       this.loadImages();
     });
   },
-
-  formateImages: function(list) {
-    for (let i = 0; i < list.length; i++) {
-      list[i].height = 0;
-    }
-
-    return list;
-  },
-
-  onImageLoad: function(e) {
-    let imageId = e.currentTarget.id;
-    let oImgW = e.detail.width; //图片原始宽度
-    let oImgH = e.detail.height; //图片原始高度
-    let imgWidth = this.data.imgWidth; //图片设置的宽度
-    let scale = imgWidth / oImgW; //比例计算
-    let imgHeight = oImgH * scale; //自适应高度
-
-    let images = this.data.images;
-    let imageObj = null;
-
-    for (let i = 0; i < images.length; i++) {
-      let img = images[i];
-      if (img.fileId === imageId) {
-        imageObj = img;
-        break;
-      }
-    }
-
-    imageObj.height = imgHeight;
-
-    let col1 = this.data.col1;
-    let col2 = this.data.col2;
-
-    if (col1H <= col2H) {
-      col1H += imgHeight;
-      col1.push(imageObj);
-    } else {
-      col2H += imgHeight;
-      col2.push(imageObj);
-    }
-
-    let data = {
-      col1: col1,
-      col2: col2
-    };
-
-    this.setData(data);
-  },
-
+  
   loadImages: function() {
     let that = this;
     // 加载到底了
@@ -118,9 +70,6 @@ Page({
           console.log("获取排行版数据", res);
           let result = res.result;
           let imageList = that.data.images.concat(result.data);
-
-          imageList = that.formateImages(imageList);
-          console.log(imageList);
           that.setData({
             images: imageList,
             loadingCount: imageList.length,

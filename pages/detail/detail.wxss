@@ -46,7 +46,7 @@ page {
 .share {
   display: flex;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
   border-top:  1px solid #f5f5f5;
   border-bottom: 1px solid #f5f5f5;
 }
