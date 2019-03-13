@@ -20,8 +20,8 @@ Page({
     posterConfig: "",
     msImageUrl: "/images/defaultResult.png", //上传到微软服务器的图片地址
     openId: wx.getStorageSync("openId"),
-    onsharing:false,
-    fileId:''
+    onsharing: false,
+    fileId: ""
   },
 
   /**
@@ -53,24 +53,25 @@ Page({
       // 传给云函数的参数
       success(res) {
         console.log("获取最新上传的图片", res);
-        if(res.result.data.length>0){
+        if (res.result.data.length > 0) {
           let result = res.result.data[0];
           let fileId = result.fileId;
-          wx.cloud.downloadFile({
-            fileID: fileId
-          }).then(res => {  
-  
-            console.log(res.tempFilePath);
-            let imagePath = res.tempFilePath;
-            that.setData({
-              done: true,
-              scoreImage:result.msxiaobingUrl,
-              text:result.text,
-              image:fileId,
-              msImageUrl:result.base64Url,
-              fileId:fileId
+          wx.cloud
+            .downloadFile({
+              fileID: fileId
             })
-          })
+            .then(res => {
+              console.log(res.tempFilePath);
+              let imagePath = res.tempFilePath;
+              that.setData({
+                done: true,
+                scoreImage: result.msxiaobingUrl,
+                text: result.text,
+                image: fileId,
+                msImageUrl: result.base64Url,
+                fileId: fileId
+              });
+            });
         }
       },
       fail: console.error
@@ -188,25 +189,25 @@ Page({
   },
 
   // 上传报告 imageInfo图片信息, FileId上传文件id , text小冰报告
-  uploadReportInfo(imageInfo,fileId, text, msUrl,base64Url) {
+  uploadReportInfo(imageInfo, fileId, text, msUrl, base64Url) {
     let that = this;
     const userInfo = wx.getStorageSync("userInfo");
     wx.cloud.callFunction({
       // 云函数名称
       name: "uploadMsReport",
       data: {
-        imageInfo:imageInfo,
+        imageInfo: imageInfo,
         score: that.getScore(text),
         fileId: fileId,
         text: text,
         msxiaobingUrl: msUrl,
         user: userInfo,
-        base64Url:base64Url
+        base64Url: base64Url
       },
       // 传给云函数的参数
       success(res) {
         console.log("云数据同步成功", res);
-        that.setData({fileId:fileId});
+        that.setData({ fileId: fileId });
       },
       fail: console.error
     });
@@ -322,7 +323,7 @@ Page({
     let that = this;
     return {
       title: that.data.text,
-      path: "/pages/detail/detail?fileId="+that.data.fileId,
+      path: "/pages/detail/detail?fileId=" + that.data.fileId,
       imageUrl: that.data.msImageUrl
     };
   }

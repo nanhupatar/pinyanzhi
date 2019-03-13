@@ -5,7 +5,7 @@
       <view wx:for="{{images}}" wx:key="id" class="item" wx:if="{{index%2===0}}">
         <view class='score'>{{item.score}}</view>
         <image src="{{item.fileId}}" class='img' data-item="{{item}}" style="width:100%;height:{{item.imageInfo.height/item.imageInfo.width*imgWidth}}px" bindtap="goDetail"></image>
-        <view class='image-info'>
+        <view class='image-info' data-item="{{item}}" bindtap="goDetail">
           <image class='avatar' src='{{item.user.avatarUrl}}'></image>
           <view class="user-name">{{item.user.nickName}}</view>
         </view>
@@ -15,14 +15,14 @@
       <view wx:for="{{images}}" wx:key="id" class="item" wx:if="{{index%2===1}}">
         <view class='score'>{{item.score}}</view>
         <image src="{{item.fileId}}" class='img' data-item="{{item}}" style="width:100%;height:{{item.imageInfo.height/item.imageInfo.width*imgWidth}}px" bindtap="goDetail"></image>
-        <view class='image-info'>
+        <view class='image-info' data-item="{{item}}" data-item="{{item}}" bindtap="goDetail">
           <image class='avatar' src='{{item.user.avatarUrl}}'></image>
           <view class="user-name">{{item.user.nickName}}</view>
         </view>
       </view>
     </view>
   </view>
-  <view class="lower-tip" wx:if="{{pageNum>totalPage}}">~亲，没有数据了~</view>
-  <view class="lower-tip" wx:else>~下拉加载更多~</view>
+  <view class="lower-tip" wx:if="{{pageNum>totalPage}}">这已经是我的底线了</view>
+  <view class="lower-tip" wx:else>滑动加载更多</view>
   <ad unit-id="adunit-95458ea2906e9072"></ad>
 </scroll-view>

@@ -33,27 +33,11 @@ Page({
           scrollH: scrollH,
           imgWidth: imgWidth
         });
-        // that.loadImages();
+        that.loadImages();
       }
     });
   },
 
-  onShow: function() {
-    col1H=0;
-    col2H = 0;
-    
-    this.setData({
-      col1: [],
-      col2: [],
-      pageNum: 1,
-      totalPage: 2,
-      loadingCount: 0,
-      images:[]
-    },()=>{
-      this.loadImages();
-    });
-  },
-  
   loadImages: function() {
     let that = this;
     // 加载到底了
@@ -90,10 +74,10 @@ Page({
   },
 
   // 跳转至页面详情
-  goDetail:function(e) {
+  goDetail: function(e) {
     const fileId = e.currentTarget.dataset.item.fileId;
     wx.navigateTo({
-      url: '../detail/detail?fileId='+fileId
-    })
+      url: "../detail/detail?fileId=" + fileId
+    });
   }
 });

@@ -2,10 +2,10 @@
 page {
   background: #ffffff;
 }
-.userInfo{
+.userInfo {
   display: flex;
   align-items: center;
-  padding:5px 0 5px 10px; 
+  padding: 5px 0 5px 10px;
   border-top: 1px solid #f5f5f5;
   border-bottom: 1px solid #f5f5f5;
 }
@@ -19,7 +19,7 @@ page {
 
 .userInfo .username {
   font-size: 14px;
-  color: #AAAAAA;
+  color: #aaaaaa;
 }
 
 .scoreImage-container {
@@ -36,7 +36,7 @@ page {
 
 .scoreText {
   padding: 5px 10px;
-  border-top:  1px solid #f5f5f5;
+  border-top: 1px solid #f5f5f5;
   border-bottom: 1px solid #f5f5f5;
   font-size: 15px;
   line-height: 20px;
@@ -46,14 +46,13 @@ page {
 .share {
   display: flex;
   align-items: center;
-  margin-bottom: 200px;
-  border-top:  1px solid #f5f5f5;
+  border-top: 1px solid #f5f5f5;
   border-bottom: 1px solid #f5f5f5;
 }
 
 .share .share-item {
   font-size: 15px;
-  border:none;
+  border: none;
   background: #ffffff;
   color: #d4237a;
 }
@@ -73,6 +72,6 @@ page {
 
 .backBtn .back {
   border: none;
-  background: rgb(137,207,240);
+  background: rgb(137, 207, 240);
   color: #ffffff;
 }

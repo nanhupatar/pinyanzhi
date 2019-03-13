@@ -18,6 +18,7 @@
     <text class='share-item-text'>下载海报</text>
   </button>
 </view>
+<view style="height:250px"></view>
 <poster wx:if="{{done}}" id="poster" hide-loading="{{true}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"></poster>
 <view class='backBtn'>
   <button plain="true" bindtap="backToResult" class='back'>继续测颜值</button>
