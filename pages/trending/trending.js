@@ -10,7 +10,9 @@ Page({
     col1: [],
     col2: [],
     pageNum: 1,
-    totalPage: 2
+    totalPage: 0,
+    end: false,
+    init: false
   },
 
   onLoad: function() {
@@ -38,32 +40,47 @@ Page({
     });
   },
 
+  onShow: function() {
+    this.data.init && this.loadImages();
+
+    this.setData({
+      init: true
+    });
+  },
+
   loadImages: function() {
     let that = this;
     // 加载到底了
-    if (that.data.pageNum <= that.data.totalPage) {
-      wx.cloud.callFunction({
-        // 云函数名称
-        name: "getTrending",
-        // 传给云函数的参数
-        data: {
-          pageNum: that.data.pageNum,
-          pageSize: 10
-        },
-        success(res) {
-          console.log("获取排行版数据", res);
-          let result = res.result;
+    // if (that.data.pageNum <= that.data.totalPage) {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: "getTrending",
+      // 传给云函数的参数
+      data: {
+        pageNum: that.data.pageNum,
+        pageSize: 10
+      },
+      success(res) {
+        console.log("获取排行版数据", res);
+        let result = res.result;
+        if (that.data.pageNum <= result.totalPage) {
           let imageList = that.data.images.concat(result.data);
+
           that.setData({
             images: imageList,
             loadingCount: imageList.length,
             pageNum: that.data.pageNum + 1,
             totalPage: result.totalPage
           });
-        },
-        fail: console.error
-      });
-    }
+        } else {
+          that.setData({
+            end: true
+          });
+        }
+      },
+      fail: console.error
+    });
+    // }
   },
 
   previewImg: function(e) {

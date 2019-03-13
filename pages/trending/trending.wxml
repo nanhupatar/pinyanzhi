@@ -22,7 +22,7 @@
       </view>
     </view>
   </view>
-  <view class="lower-tip" wx:if="{{pageNum>totalPage}}">这已经是我的底线了</view>
+  <view class="lower-tip" wx:if="{{end}}">这已经是我的底线了</view>
   <view class="lower-tip" wx:else>滑动加载更多</view>
   <ad unit-id="adunit-95458ea2906e9072"></ad>
 </scroll-view>
