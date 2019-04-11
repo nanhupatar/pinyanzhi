@@ -1,4 +1,3 @@
-<official-account></official-account>
 <scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="loadImages">
   <view style="width:100%">
     <view class="col">
@@ -22,7 +21,19 @@
       </view>
     </view>
   </view>
-  <view class="lower-tip" wx:if="{{end}}">这已经是我的底线了</view>
-  <view class="lower-tip" wx:else>滑动加载更多</view>
+  <view class="page__bd">
+    <block wx:if="{{pageNum<totalPage}}">
+      <view class="weui-loadmore">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="weui-loadmore weui-loadmore_line">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+      </view>
+    </block>
+  </view>
+
   <ad unit-id="adunit-95458ea2906e9072"></ad>
 </scroll-view>

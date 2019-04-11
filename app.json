@@ -18,9 +18,15 @@
     "uploadFile": 60000
   },
   "tabBar": {
-    "backgroundColor": "#fffff",
+    "backgroundColor": "#ffffff",
     "selectedColor": "#d4237a",
     "list": [
+      {
+        "iconPath": "images/trending-tab.png",
+        "selectedIconPath": "images/trending-tab-active.png",
+        "pagePath": "pages/trending/trending",
+        "text": "颜值榜"
+      },
       {
         "iconPath": "images/camera-tab.png",
         "selectedIconPath": "images/camera-tab-active.png",
@@ -32,12 +38,6 @@
         "selectedIconPath": "images/photo-tab-active.png",
         "pagePath": "pages/photo/photo",
         "text": "相册"
-      },
-      {
-        "iconPath": "images/trending-tab.png",
-        "selectedIconPath": "images/trending-tab-active.png",
-        "pagePath": "pages/trending/trending",
-        "text": "颜值榜"
       }
     ]
   }

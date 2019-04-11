@@ -1,32 +1,55 @@
-
-.image-container {
+.imageList-comtainer {
+  box-sizing: border-box;
+  width: 750rpx;
+  padding: 10rpx 15rpx;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.image-container .image-item {
-
-  width: 48%;
-  margin: 1% 1% 15px 1%;
-  background: #ffffff;
+.imageList-item {
+    width: 350rpx;
+    margin-bottom: 20rpx;
+    border-radius: 10rpx;
+    background-color: #fff;
+    overflow: hidden;
+    animation: fadeIn 1s;
 }
 
-.image-item .img {
-  width: 100%;
-  height: 180px
+.imageList-item .cover-img-container {
+  position: relative;
+  overflow: hidden;
 }
 
-.image-item .del {
+.cover-img-container .cover-img{
+  width: 350rpx;
+  height: 508rpx;
+}
+
+.imageList-item .user-info {
   display: flex;
   align-items: center;
-  padding: 3px 10px;
-  color: red;
+  padding: 0 5px 5px 5px;
 }
 
-.lower-tip {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
+.user-info .avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius:100px;
+  margin-right: 5px;
+}
+
+.user-info .nickName {
+  font-size: 30rpx;
+  color: #AAAAAA;
+  flex:1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delete {
+  color: #666;
+  text-align: center;
   font-size: 15px;
-  color: #666666;
 }

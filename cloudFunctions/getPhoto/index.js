@@ -12,7 +12,9 @@ exports.main = async (event, context) => {
   const pageSize = event.pageSize;
   const pageNum = event.pageNum;
   const skip = (pageNum - 1) * 10;
-  const count = await trending.count();
+  const count = await trending.where({
+    OPENID: openid
+  }).count();
   const data = await trending.where({
     OPENID:openid
   }).skip(skip).limit(pageSize).orderBy('timestamps', "desc").get();

@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
   const skip = (pageNum - 1) * 10;
   const count = await trending.count();
   const trendingList = await trending
-    .orderBy("score", "desc")
+    .orderBy("timestamp", "desc")
     .skip(skip)
     .limit(pageSize)
     .get();

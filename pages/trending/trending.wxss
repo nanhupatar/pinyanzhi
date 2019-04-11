@@ -9,6 +9,9 @@
   position: relative;
   font-size: 0;
   margin-bottom: 15rpx;
+  background: #ccc;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .item .img {
